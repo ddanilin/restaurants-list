@@ -4,11 +4,11 @@ using RestaurantsList.DataAccess.MSSQL.Entities;
 
 namespace RestaurantsList.DataAccess.MSSQL.Config
 {
-    public class RestaurantsConfiguration : IEntityTypeConfiguration<Restaurants>
+    public class CityRestaurantJunctionConfiguration : IEntityTypeConfiguration<CityRestaurantJunction>
     {
-        public void Configure(EntityTypeBuilder<Restaurants> builder)
+        public void Configure(EntityTypeBuilder<CityRestaurantJunction> builder)
         {
-            builder.ToTable("Restaurants");
+            builder.ToTable("CityRestaurantJunction");
 
             builder.HasKey(p => p.Id);
 

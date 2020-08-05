@@ -14,20 +14,17 @@ namespace RestaurantsList.Services
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<City> _cityRepository;
-        private readonly IAsyncRepository<Restaurant> _restaurantRepository;
-        private readonly IRestaurantsRepository _restaurantsRepository;
+        private readonly IRestaurantRepository _restaurantRepository;
 
         public RestaurantService(
             IMapper mapper,
             IAsyncRepository<City> cityRepository,
-            IAsyncRepository<Restaurant> restaurantRepository,
-            IRestaurantsRepository restaurantsRepository
+            IRestaurantRepository restaurantRepository
         )
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(IMapper));
             _cityRepository = cityRepository ?? throw new ArgumentNullException(nameof(IAsyncRepository<City>));
-            _restaurantRepository = restaurantRepository ?? throw new ArgumentNullException(nameof(IAsyncRepository<Restaurant>));
-            _restaurantsRepository = restaurantsRepository ?? throw new ArgumentNullException(nameof(IRestaurantsRepository));
+            _restaurantRepository = restaurantRepository ?? throw new ArgumentNullException(nameof(IRestaurantRepository));
         }
 
         public async Task<Restaurant> CreateRestaurantAsync(long cityId, CreateRestaurantRq createRestaurant)
@@ -39,12 +36,12 @@ namespace RestaurantsList.Services
             var restaurant = _mapper.Map<Restaurant>(createRestaurant);
             var newRestaurant = await _restaurantRepository.AddAsync(restaurant);
 
-            var restaurants = new Restaurants
+            var junction = new CityRestaurantJunction
             {
                 CityId = city.Id.Value,
                 RestaurantId = newRestaurant.Id.Value
             };
-            var newRestaurants = await _restaurantsRepository.AddAsync(restaurants);
+            var newRestaurants = await _restaurantRepository.AddCityRestaurantJunction(junction);
 
             return newRestaurant;
         }
@@ -53,7 +50,7 @@ namespace RestaurantsList.Services
         {
             getRestaurantsByCity.Validate();
 
-            return _restaurantsRepository.GetRestaurantsByCityAsync(
+            return _restaurantRepository.GetRestaurantsByCityAsync(
                 cityId,
                 getRestaurantsByCity.PageNumber,
                 getRestaurantsByCity.PageSize);

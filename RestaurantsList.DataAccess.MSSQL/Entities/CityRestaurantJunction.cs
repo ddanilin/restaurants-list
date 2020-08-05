@@ -1,6 +1,6 @@
 ﻿namespace RestaurantsList.DataAccess.MSSQL.Entities
 {
-    public class Restaurants : BaseEntity
+    public class CityRestaurantJunction : BaseEntity
     {
         public long CityId { get; set; }
 

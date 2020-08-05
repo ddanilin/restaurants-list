@@ -12,8 +12,7 @@ namespace RestaurantsList.DataAccess.MSSQL.Extensions
             serviceCollection.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(connectionString));
 
             serviceCollection.AddTransient(typeof(IAsyncRepository<Models.City>), typeof(CityRepository));
-            serviceCollection.AddTransient(typeof(IAsyncRepository<Models.Restaurant>), typeof(RestaurantRepository));
-            serviceCollection.AddTransient(typeof(IRestaurantsRepository), typeof(RestaurantsRepository));
+            serviceCollection.AddTransient(typeof(IRestaurantRepository), typeof(RestaurantRepository));
         }
     }
 }

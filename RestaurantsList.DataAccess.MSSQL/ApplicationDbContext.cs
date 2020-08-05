@@ -10,7 +10,7 @@ namespace RestaurantsList.DataAccess.MSSQL
 
         public DbSet<Restaurant> Restaurant { get; set; }
 
-        public DbSet<Restaurants> Restaurants { get; set; }
+        public DbSet<CityRestaurantJunction> CityRestaurantJunction { get; set; }
 
         public ApplicationDbContext(DbContextOptions options)
             : base(options)

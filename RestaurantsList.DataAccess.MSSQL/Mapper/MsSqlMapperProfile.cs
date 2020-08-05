@@ -10,14 +10,14 @@ namespace RestaurantsList.DataAccess.MSSQL.Mapper
 
             CreateMap<Models.Restaurant, Entities.Restaurant>();
 
-            CreateMap<Models.Restaurants, Entities.Restaurants>();
+            CreateMap<Models.CityRestaurantJunction, Entities.CityRestaurantJunction>();
 
 
             CreateMap<Entities.City, Models.City>();
 
             CreateMap<Entities.Restaurant, Models.Restaurant>();
 
-            CreateMap<Entities.Restaurants, Models.Restaurants>();
+            CreateMap<Entities.CityRestaurantJunction, Models.CityRestaurantJunction>();
         }
     }
 }

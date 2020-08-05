@@ -8,7 +8,7 @@ namespace RestaurantsList.DataAccess.MSSQL.Entities
 
         #region Nav props
 
-        public IEnumerable<Restaurants> Restaurants { get; set; }
+        public IEnumerable<CityRestaurantJunction> Restaurants { get; set; }
 
         #endregion
     }

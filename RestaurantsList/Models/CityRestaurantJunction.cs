@@ -1,6 +1,6 @@
 ﻿namespace RestaurantsList.Models
 {
-    public sealed class Restaurants : BaseModel
+    public sealed class CityRestaurantJunction : BaseModel
     {
         public long CityId { get; set; }
 
