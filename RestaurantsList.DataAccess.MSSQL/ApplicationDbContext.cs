@@ -14,7 +14,9 @@ namespace RestaurantsList.DataAccess.MSSQL
 
         public ApplicationDbContext(DbContextOptions options)
             : base(options)
-        { }
+        {
+            Database.EnsureCreated();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
